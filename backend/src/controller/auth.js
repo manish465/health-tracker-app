@@ -15,7 +15,7 @@ exports.signup = (req, res) => {
         const _user = new User({ username, hash_password });
         _user
             .save()
-            .then(() => res.status(200).json({ msg: "User saved" }))
+            .then(() => res.status(200).json({ msg: "Saved" }))
             .catch((err) => res.status(400).json({ err: err.message }));
     });
 };
@@ -40,6 +40,21 @@ exports.signin = (req, res) => {
                     return res.status(201).json({ token });
                 } else return res.status(400).json({ err: "Invelid Input" });
             });
+        })
+        .catch((err) => console.log(err.message));
+};
+
+exports.get = (req, res) => {
+    const { id } = req.params;
+
+    User.findOne({ _id: id })
+        .then((user) => {
+            if (!user)
+                return res.status(400).json({ err: "User dose not exist" });
+
+            return res
+                .status(200)
+                .json({ id: user._id, username: user.username });
         })
         .catch((err) => console.log(err.message));
 };

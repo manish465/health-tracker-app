@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const port = process.env.PORT || 8000;
 const userRoute = require("./routes/auth");
+const waterTrackingRoute = require("./routes/waterTracking");
 
 dotenv.config();
 app.use(cors());
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRoute);
+app.use("/api/water", waterTrackingRoute);
 
 monsgoose.connect(process.env.URI, (err) => {
     err
