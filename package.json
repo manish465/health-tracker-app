@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "cd backend && nodemon src"
+    "backend": "cd backend && nodemon src",
+    "frontend": "cd frontend && npm start"
   },
   "keywords": [],
   "author": "",
