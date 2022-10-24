@@ -15,7 +15,7 @@ exports.signup = (req, res) => {
         const _user = new User({ username, hash_password });
         _user
             .save()
-            .then(() => res.status(200).json({ msg: "Saved" }))
+            .then(() => res.status(200).json({ msg: "User Saved" }))
             .catch((err) => res.status(400).json({ err: err.message }));
     });
 };
@@ -37,7 +37,9 @@ exports.signin = (req, res) => {
                         { _id: user._id },
                         process.env.JWT_SECRET
                     );
-                    return res.status(201).json({ token });
+                    return res
+                        .status(201)
+                        .json({ token, msg: "Login Sucsses" });
                 } else return res.status(400).json({ err: "Invelid Input" });
             });
         })
